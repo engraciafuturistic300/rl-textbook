@@ -27,10 +27,10 @@ where $G_t = \sum_{k=0}^{\infty}\gamma^k R_{t+k+1}$ is the discounted return fro
 
 The Bellman equation\index{Bellman equation} for a fixed policy $\pi$ offers an alternative target.  Because
 \begin{equation}
-\label{eq:bellman-v}
+\label{eq:bellman-v-ch6}
 V^\pi(s) = \E_\pi\bigl[R_{t+1} + \gamma V^\pi(S_{t+1}) \mid S_t = s\bigr],
 \end{equation}
-the true value of state $s$ equals the expected immediate reward plus the discounted value of the next state.  Equation~\eqref{eq:bellman-v} is exact when $V = V^\pi$, but even with an imperfect estimate $V \approx V^\pi$ the quantity
+the true value of state $s$ equals the expected immediate reward plus the discounted value of the next state.  Equation~\eqref{eq:bellman-v-ch6} is exact when $V = V^\pi$, but even with an imperfect estimate $V \approx V^\pi$ the quantity
 \begin{equation}
 \label{eq:td0-target}
 R_{t+1} + \gamma V(S_{t+1})
@@ -97,7 +97,7 @@ Taking the conditional expectation given $S_t = s$:
 &= \E_\pi\bigl[R_{t+1} + \gamma V^\pi(S_{t+1}) \mid S_t = s\bigr] - V^\pi(s)\\
 &= V^\pi(s) - V^\pi(s) = 0,
 \end{align*}
-where the second line uses the Bellman equation~\eqref{eq:bellman-v}.
+where the second line uses the Bellman equation~\eqref{eq:bellman-v-ch6}.
 \end{proof}
 
 Theorem~\ref{thm:td-error-zero-mean} implies that, at the fixed point, the TD update has zero expected change.  Before convergence, $\delta_t \ne 0$ on average, and its sign consistently points in the direction that reduces the Bellman error.
@@ -212,10 +212,10 @@ Policy evaluation tells us how good the current policy is.  Control requires we 
 \]
 The Bellman equation for $Q^\pi$ is
 \begin{equation}
-\label{eq:bellman-q}
+\label{eq:bellman-q-ch6}
 Q^\pi(s,a) = \E_\pi\bigl[R_{t+1} + \gamma Q^\pi(S_{t+1},A_{t+1}) \mid S_t=s, A_t=a\bigr].
 \end{equation}
-Replacing the expectation in~\eqref{eq:bellman-q} by a single sample and applying the resulting update gives:
+Replacing the expectation in~\eqref{eq:bellman-q-ch6} by a single sample and applying the resulting update gives:
 
 \subsection{The SARSA Update}
 
@@ -903,9 +903,11 @@ The variance of the TD(0) target $R_{t+1}+\gamma V(S_{t+1})$ is bounded by
 \Var[R_{t+1}+\gamma V(S_{t+1})\mid S_t=s] \le \sigma_R^2 + \gamma^2\,\Var[V(S_{t+1})\mid S_t=s],
 \]
 where $\sigma_R^2$ is the reward variance.  When $V$ is a smooth function (e.g.\ a neural network), $\Var[V(S_{t+1})]$ is small.  In contrast, the MC return $G_t = \sum_{k=0}^{\infty}\gamma^k R_{t+k+1}$ accumulates variance from every step.  Since rewards at different time steps are generally correlated through the shared trajectory, the full expression includes cross-covariance terms:
-\[
-\Var[G_t\mid S_t=s] = \sum_{k=0}^{\infty}\gamma^{2k}\Var[R_{t+k+1}\mid S_t=s] + 2\!\!\sum_{0\le j<k}\!\!\gamma^{j+k}\Cov[R_{t+j+1},R_{t+k+1}\mid S_t=s] \;\gg\; \Var[R_{t+1}+\gamma V(S_{t+1})].
-\]
+\begin{align*}
+\Var[G_t\mid S_t=s] &= \sum_{k=0}^{\infty}\gamma^{2k}\Var[R_{t+k+1}\mid S_t=s] \\
+&\quad + 2\!\!\sum_{0\le j<k}\!\!\gamma^{j+k}\Cov[R_{t+j+1},R_{t+k+1}\mid S_t=s] \\
+&\gg \Var[R_{t+1}+\gamma V(S_{t+1})].
+\end{align*}
 This variance gap grows with episode length and discount, making TD methods substantially more sample-efficient than MC in many practical settings.
 
 \subsection{Mean Squared Error Decomposition}

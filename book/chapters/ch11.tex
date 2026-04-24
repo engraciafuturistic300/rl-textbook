@@ -245,7 +245,7 @@ This MDP formulation reveals three structural features that distinguish language
 \label{rem:lm-mdp-features}
 \begin{enumerate}[leftmargin=*]
   \item \textbf{Enormous action space.} With $|\cA| \sim 10^5$, storing a value function $Q(s, a)$ explicitly for all actions is computationally infeasible. This rules out tabular methods (Chapter~\ref{ch:dp}) and most Q-learning variants, and motivates the policy-gradient and actor-critic approaches of Chapters~\ref{ch:pg}--\ref{ch:actor-critic}.
-  \item \textbf{Long horizon with sparse reward.} A typical response is 200--2000 tokens long. The single terminal reward must be credited across hundreds of preceding actions\,---\,the credit-assignment problem (the credit-assignment problem) in its most extreme form. Process reward models (Section~\ref{sec:prm} in Chapter~\ref{ch:reward-models}) address this by providing step-level feedback.
+  \item \textbf{Long horizon with sparse reward.} A typical response is 200--2000 tokens long. The single terminal reward must be credited across hundreds of preceding actions\,---\,the credit-assignment problem in its most extreme form. Process reward models (Section~\ref{sec:prm} in Chapter~\ref{ch:reward-models}) address this by providing step-level feedback.
   \item \textbf{Deterministic transitions.} Once a token is appended, the state is determined with certainty. All stochasticity comes from the policy itself, not from the environment. This simplifies some theoretical analyses but makes exploration harder: the model must rely on its own sampling distribution to visit novel completions.
 \end{enumerate}
 \end{remark}
@@ -416,13 +416,14 @@ A concise comparison of the three stages appears in Table~\ref{tab:pipeline-comp
 \centering
 \caption{Comparison of the three post-training stages.}
 \label{tab:pipeline-comparison}
-\begin{tabular}{lllll}
+\footnotesize
+\begin{tabular}{@{}p{2.1cm}p{3cm}p{2.6cm}p{2.3cm}p{3.2cm}@{}}
 \toprule
 \textbf{Stage} & \textbf{Data} & \textbf{Objective} & \textbf{Paradigm} & \textbf{Key limitation} \\
 \midrule
-Pre-training   & Unlabelled text & Next-token NLL & Self-supervised & No behavioural control \\
-SFT            & $(x, y)$ pairs  & Masked NLL & Supervised & Bounded by annotator quality \\
-RL Alignment   & $(x, y_w, y_l)$ or $r(x,y)$ & KL-penalised reward & Reinforcement & Reward overoptimisation \\
+Pre-training & Unlabelled text & Next-token NLL & Self-supervised & No behavioural control \\
+SFT & $(x, y)$ pairs & Masked NLL & Supervised & Bounded by annotator quality \\
+RL Alignment & $(x, y_w, y_l)$ or $r(x,y)$ & KL-penalised reward & Reinforcement & Reward overoptimisation \\
 \bottomrule
 \end{tabular}
 \end{table}

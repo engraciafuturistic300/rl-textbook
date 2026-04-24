@@ -37,7 +37,7 @@ This is a linear system of $|\cS|$ equations in $|\cS|$ unknowns.  In principle 
 and iterate $v_{k+1} = T^\pi v_k$ starting from any bounded initialisation $v_0$.
 
 \begin{theorem}[Contraction of $T^\pi$]
-\label{thm:contraction}
+\label{thm:contraction-ch4}
 \index{contraction mapping}
 The operator $T^\pi$ is a contraction\index{Banach fixed-point theorem} on the space of bounded functions $\cS \to \R$ equipped with the sup-norm $\|v\|_\infty = \max_{s \in \cS}|v(s)|$.  Specifically, for any two bounded functions $u, v \colon \cS \to \R$,
 \[
@@ -217,7 +217,7 @@ Hence $v^\pi \le T^{\pi'} v^\pi$ pointwise.  The operator $T^{\pi'}$ is \emph{mo
 \[
 v^\pi \le T^{\pi'} v^\pi \le (T^{\pi'})^2 v^\pi \le \cdots \le (T^{\pi'})^n v^\pi \qquad \forall n \ge 1.
 \]
-By Theorem~\ref{thm:contraction} (with $\pi'$ in place of $\pi$), $(T^{\pi'})^n v^\pi \to v^{\pi'}$ as $n \to \infty$.  Since the inequality holds for every finite $n$, it is preserved in the limit:
+By Theorem~\ref{thm:contraction-ch4} (with $\pi'$ in place of $\pi$), $(T^{\pi'})^n v^\pi \to v^{\pi'}$ as $n \to \infty$.  Since the inequality holds for every finite $n$, it is preserved in the limit:
 \[
 v^\pi(s) \le v^{\pi'}(s), \qquad \forall s \in \cS. \qedhere
 \]

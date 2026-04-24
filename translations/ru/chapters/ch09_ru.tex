@@ -1,7 +1,7 @@
 % ===========================================================
 %  Chapter 9 — Actor-Critic Methods and Proximal Policy Optimization
 % ===========================================================
-\chapter[Actor-Critic Methods and PPO]{Методы актор-критик и Proximal Policy Optimization}
+\chapter[Методы актор-критик и PPO]{Методы актор-критик и Proximal Policy Optimization}
 \label{ch:actor-critic}
 
 \begin{quote}
@@ -34,10 +34,10 @@
 = \E_{S \sim d^\gamma_{\pi_\theta},\; A \sim \pi_\theta(\cdot|S)}
   \bigl[\nabla_\theta \log \pi_\theta(A \mid S)\; Q^{\pi_\theta}(S, A)\bigr].
 \end{equation}
-Глава~\ref{ch:pg} также показала, что любая \emph{зависящая от состояния} базовая линия $b(S_t)$ может быть вычтена из $Q^{\pi_\theta}(S_t, A_t)$ без изменения ожидаемого градиента (Утверждение 8.2 в главе~\ref{ch:pg}). Наилучшей возможной базовой линией является та, которая максимально снижает дисперсию, и при мягких условиях оптимальным выбором является в точности функция ценности состояния $V^{\pi_\theta}(s)$. Остаток после вычитания этой базовой линии настолько важен, что заслуживает собственного имени.
+Глава~\ref{ch:pg} также показала, что любая \emph{зависящая от состояния} базовая линия $b(S_t)$ может быть вычтена из $Q^{\pi_\theta}(S_t, A_t)$ без изменения ожидаемого градиента (теорема~\ref{thm:baseline} в главе~\ref{ch:pg}). Наилучшей возможной базовой линией является та, которая максимально снижает дисперсию, и при мягких условиях оптимальным выбором является в точности функция ценности состояния $V^{\pi_\theta}(s)$. Остаток после вычитания этой базовой линии настолько важен, что заслуживает собственного имени.
 
 \begin{definition}[Функция преимущества]
-\label{def:advantage}
+\label{def:advantage-ch9}
 \index{advantage function}
 Для стратегии $\pi$ и порождённых ею функций ценности действий и состояний $Q^\pi$ и $V^\pi$, \textbf{функция преимущества} определяется как
 \begin{equation}
@@ -59,7 +59,7 @@ A^\pi(s, a) \;=\; Q^\pi(s, a) - V^\pi(s).
 \end{proposition}
 
 \begin{proof}
-По определению~\ref{def:advantage} и линейности математического ожидания,
+По определению~\ref{def:advantage-ch9} и линейности математического ожидания,
 \[
 \E_{A \sim \pi(\cdot|s)}\bigl[A^\pi(s, A)\bigr]
 = \E_{A \sim \pi(\cdot|s)}\bigl[Q^\pi(s, A)\bigr] - V^\pi(s).
@@ -259,7 +259,7 @@ R_{t+1} = 1,\quad V_\phi(S_t) = 4.2,\quad V_\phi(S_{t+1}) = 3.1,
 
 % -----------------------------------------------------------
 \section{Обобщённая оценка преимущества}
-\label{sec:gae}
+\label{sec:gae-ch9}
 % -----------------------------------------------------------
 
 \subsection{Многошаговые отдачи и $n$-шаговое преимущество}
@@ -284,7 +284,7 @@ G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1}R_{t+n}
 \subsection{Определение и вывод GAE}
 
 \begin{definition}[Обобщённая оценка преимущества]
-\label{def:gae}
+\label{def:gae-ch9}
 \index{Generalized Advantage Estimation (GAE)}
 \index{GAE|see{Generalized Advantage Estimation}}
 Для параметров $\gamma \in (0,1)$ и $\lambda \in [0,1]$ определим ошибки TD
@@ -949,7 +949,7 @@ PPO заметно устойчив к выбору гиперпараметро
 \label{ex:gae-derivation}
 Пусть $T = 4$ (шаги $t = 0,1,2,3$, терминальное при $t=4$) с ошибками TD $\delta_0 = 0.4$, $\delta_1 = -0.2$, $\delta_2 = 0.6$, $\delta_3 = 0.1$. Возьмём $\gamma = 1$ и $\lambda = 0.8$.
 \begin{enumerate}[label=(\alph*)]
-  \item Вычислите $\hat{A}_0^{\mathrm{GAE}}$ используя определение~\ref{def:gae}.
+  \item Вычислите $\hat{A}_0^{\mathrm{GAE}}$ используя определение~\ref{def:gae-ch9}.
   \item Проверьте, что ваш ответ совпадает с формулой из утверждения~\ref{prop:gae-nstep}, вычислив взвешенную смесь $n$-шаговых преимуществ $\hat{A}_0^{(n)}$ для $n = 1, 2, 3, 4$.
   \item Вычислите $\hat{A}_0^{\mathrm{GAE}}$ для $\lambda = 0$ и $\lambda = 1$ и интерпретируйте результаты.
 \end{enumerate}
