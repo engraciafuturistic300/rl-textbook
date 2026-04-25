@@ -237,9 +237,9 @@ DPO требует набора данных предпочтений вида $
   arrow/.style={->, >=Stealth, thick},
   rowlabel/.style={font=\small\bfseries}
 ]
-\def\dx{3.2}     % шаг между блоками
+\def\dx{3.4}     % шаг между блоками
 \def\xlab{-0.4}  % позиция метки PPO:/DPO: (меньше левое поле)
-\def\xstart{2.0} % центр первого блока (больше зазор от метки)
+\def\xstart{1.5} % центр первого блока (больше зазор от метки)
 \def\yP{2.6}
 \def\yD{-0.6}
 
@@ -276,7 +276,7 @@ DPO требует набора данных предпочтений вида $
 
 % Прямая стрелка в обход исключённых компонентов
 \draw[arrow, color=blue!70]
-  (dpo-pol.south) .. controls +(0,-3.2) and +(0,-3.2) .. (dpo-loss.south)
+  (dpo-pol.south) .. controls +(0,-1.8) and +(0,-1.8) .. (dpo-loss.south)
   node[pos=0.5, below=2pt, font=\scriptsize, color=blue!70]{напрямую (без RM)};
 
 \end{tikzpicture}%
