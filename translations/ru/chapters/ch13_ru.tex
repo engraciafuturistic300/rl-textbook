@@ -52,31 +52,31 @@ GRPO одновременно решает обе проблемы:
 \centering
 \begin{tikzpicture}[
     node distance=1.2cm and 2.0cm,
-    box/.style={rectangle, draw, rounded corners=4pt, minimum width=2.2cm,
+    box/.style={rectangle, draw, rounded corners=4pt, minimum width=2.7cm,
                 minimum height=0.8cm, font=\small, fill=blue!8},
     verifier/.style={rectangle, draw, rounded corners=4pt, minimum width=2.2cm,
                 minimum height=0.8cm, font=\small, fill=green!12},
-    env/.style={rectangle, draw, rounded corners=4pt, minimum width=2.2cm,
+    env/.style={rectangle, draw, rounded corners=4pt, minimum width=3.4cm,
                 minimum height=0.8cm, font=\small, fill=orange!12},
     arr/.style={-Stealth, thick},
     lab/.style={font=\footnotesize, inner sep=2pt}
   ]
   % Сторона PPO
   \node[font=\small\bfseries] at (0, 3.2) {PPO-RLHF (4 модели)};
-  \node[box] (actor1) at (-1.2, 2.2) {Актор $\pi_\theta$};
-  \node[box] (critic) at (1.2, 2.2) {Критик $V_\phi$};
-  \node[box] (ref1) at (-1.2, 0.8) {Реф.\ $\pi_\mathrm{ref}$};
-  \node[env] (rm) at (1.2, 0.8) {Модель вознаграждения $r_\psi$};
+  \node[box] (actor1) at (-1.7, 2.2) {Актор $\pi_\theta$};
+  \node[box] (critic) at (1.7, 2.2) {Критик $V_\phi$};
+  \node[box] (ref1) at (-2.3, 0.8) {Реф.\ $\pi_\mathrm{ref}$};
+  \node[env] (rm) at (1.35, 0.8) {Модель вознаграждения $r_\psi$};
 
   % Сторона GRPO
-  \node[font=\small\bfseries] at (5.5, 3.2) {GRPO-RLVR (2 модели)};
-  \node[box] (actor2) at (4.3, 2.2) {Актор $\pi_\theta$};
-  \node[box] (ref2) at (6.7, 2.2) {Реф.\ $\pi_\mathrm{ref}$};
-  \node[verifier] (ver) at (5.5, 0.8) {Верификатор $V(q,o)$};
+  \node[font=\small\bfseries] at (6.5, 3.2) {GRPO-RLVR (2 модели)};
+  \node[box] (actor2) at (5.3, 2.2) {Актор $\pi_\theta$};
+  \node[box] (ref2) at (8.2, 2.2) {Реф.\ $\pi_\mathrm{ref}$};
+  \node[verifier, minimum width=3.0cm] (ver) at (6.65, 0.8) {Верификатор $V(q,o)$};
 
   % Метки
-  \node[lab, below=0.15cm of critic, gray] {(исключено)};
-  \node[lab, below=0.15cm of rm, gray] {(заменено верификатором)};
+  \node[lab, below=0.05cm of critic, gray] {(исключено)};
+  \node[lab, below=0.05cm of rm, gray] {(заменено верификатором)};
 \end{tikzpicture}
 \caption{Сравнение архитектур моделей. PPO-RLHF требует четырёх копий нейронных сетей: актора, критика, референса и модели вознаграждения. GRPO-RLVR требует только двух копий (актора и референса) плюс лёгкий детерминированный верификатор, уменьшая вдвое объём занимаемой памяти.}
 \label{fig:grpo-architecture}
