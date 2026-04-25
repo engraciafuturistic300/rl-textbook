@@ -343,7 +343,7 @@ This is a ratio of expectations and depends on the component index $k$.  The opt
 
 The most natural and widely used baseline is $b(S_t) = V^{\pi_\theta}(S_t)$.  Subtracting the value function from the return yields the \textbf{advantage function}\index{advantage function}:
 \begin{equation}
-\label{eq:advantage}
+\label{eq:advantage-ch8}
 A^{\pi_\theta}(s,a) = Q^{\pi_\theta}(s,a) - V^{\pi_\theta}(s).
 \end{equation}
 The policy gradient theorem with the value baseline becomes
@@ -579,13 +579,13 @@ The natural policy gradient is conceptually important because it provides the th
 
 REINFORCE is a stochastic gradient ascent algorithm applied to $J(\theta)$.  Its convergence properties follow from the general theory of stochastic approximation (Robbins \& Monro, 1951), provided the gradient estimator is unbiased (established in Theorem~\ref{thm:rtg-pg}) and the step sizes satisfy the Robbins-Monro conditions:
 \begin{equation}
-\label{eq:rm-conditions}
+\label{eq:rm-conditions-ch8}
 \sum_{k=1}^\infty \alpha_k = \infty, \qquad \sum_{k=1}^\infty \alpha_k^2 < \infty.
 \end{equation}
 
 \begin{theorem}[Convergence of REINFORCE]
 \label{thm:reinforce-convergence}
-Assume $\pi_\theta(a \mid s)$ is twice continuously differentiable in $\theta$, and that the gradient $\nabla_\theta \log \pi_\theta$ is bounded.  If the step sizes satisfy~\eqref{eq:rm-conditions} and $J(\theta)$ is bounded above, then the iterates of REINFORCE satisfy
+Assume $\pi_\theta(a \mid s)$ is twice continuously differentiable in $\theta$, and that the gradient $\nabla_\theta \log \pi_\theta$ is bounded.  If the step sizes satisfy~\eqref{eq:rm-conditions-ch8} and $J(\theta)$ is bounded above, then the iterates of REINFORCE satisfy
 \[
 \liminf_{k \to \infty} \|\nabla_\theta J(\theta_k)\|^2 = 0 \quad \text{almost surely.}
 \]
@@ -612,7 +612,7 @@ All policy gradient estimators involve a bias-variance tradeoff in how they esti
 \item \textbf{Monte Carlo return $G_t$:} unbiased but high variance (accumulates reward noise over the full episode).
 \item \textbf{TD(0) target $R_{t+1} + \gamma \hat V(S_{t+1})$:} biased (due to the approximation error in $\hat V$) but low variance (only one step of noise).
 \item \textbf{$n$-step return:} interpolates between the two extremes; increasing $n$ reduces bias and increases variance.
-\item \textbf{GAE (Generalised Advantage Estimation, Section~\ref{sec:td0}) with $\lambda \in [0,1]$:} exponentially weighted average of $n$-step returns, combining low bias ($\lambda$ near 1) with low variance ($\lambda$ near 0).
+\item \textbf{GAE (Generalised Advantage Estimation, Section~\ref{sec:gae}) with $\lambda \in [0,1]$:} exponentially weighted average of $n$-step returns, combining low bias ($\lambda$ near 1) with low variance ($\lambda$ near 0).
 \end{itemize}
 
 The REINFORCE estimator corresponds to the $n = T$ (full Monte Carlo) extreme.  RLOO keeps the Monte Carlo return but reduces variance through the leave-one-out baseline, while actor-critic methods (Chapter~\ref{ch:actor-critic}) reduce variance through bootstrapping at the cost of some bias.
@@ -628,12 +628,12 @@ In practice, variance is typically the dominant problem for policy gradient meth
 
 \index{policy gradient!estimators comparison}
 
-Table~\ref{tab:pg-comparison} summarises the properties of the estimators developed in this chapter.  We use the following notation: $\hat g$ denotes the gradient estimator, $b$ denotes the baseline, and $K$ denotes the number of samples per prompt/state.
+Table~\ref{tab:pg-comparison-ch8} summarises the properties of the estimators developed in this chapter.  We use the following notation: $\hat g$ denotes the gradient estimator, $b$ denotes the baseline, and $K$ denotes the number of samples per prompt/state.
 
 \begin{table}[ht]
 \centering
 \caption{Comparison of policy gradient estimators.}
-\label{tab:pg-comparison}
+\label{tab:pg-comparison-ch8}
 \small
 \begin{tabular}{@{}llllp{3.2cm}@{}}
 \toprule
@@ -656,7 +656,7 @@ TRPO/PPO & $\hat V_w(s)$ & Biased/Low & Yes & KL/clip; state of art \\
 \end{tabular}
 \end{table}
 
-Several observations are worth drawing from Table~\ref{tab:pg-comparison}.
+Several observations are worth drawing from Table~\ref{tab:pg-comparison-ch8}.
 
 First, all estimators in the ``Bias'' column marked ``Unbiased'' are unbiased as estimators of $\nabla_\theta J(\theta)$: the policy gradient is an exact gradient of the true objective.  Bias enters only when one replaces Monte Carlo returns with bootstrapped targets (as in actor-critic methods), or when value function approximation error propagates into the advantage estimate.
 
@@ -737,7 +737,7 @@ Consider a continuous-action MDP with $\cA = \R$ and a Gaussian policy $\pi_\the
 \begin{exercise}
 \label{ex:pg-convergence}
 \begin{enumerate}
-\item State the Robbins-Monro conditions~\eqref{eq:rm-conditions} and give one example of a step-size sequence that satisfies them and one that does not.
+\item State the Robbins-Monro conditions~\eqref{eq:rm-conditions-ch8} and give one example of a step-size sequence that satisfies them and one that does not.
 \item Consider REINFORCE with a constant step size $\alpha > 0$.  Why does this \emph{not} satisfy the Robbins-Monro conditions, and what does the algorithm converge to instead?
 \item Explain the bias-variance tradeoff between REINFORCE (Monte Carlo return) and an actor-critic method (TD target) in the context of Theorem~\ref{thm:reinforce-rate}.  How does reducing variance via a baseline affect the sample complexity bound?
 \end{enumerate}

@@ -509,7 +509,7 @@ While QMIX operates in the value-function paradigm, many cooperative
 tasks benefit from policy-gradient methods because they handle
 continuous actions naturally and are easier to tune. \textbf{MAPPO}
 \index{MAPPO|textbf} (Yu et al., 2022) applies Proximal Policy
-Optimisation (PPO; Chapter~\ref{ch:pg}) in the CTDE framework.
+Optimisation (PPO; Chapter~\ref{ch:actor-critic}) in the CTDE framework.
 Each agent $i$ maintains a separate actor $\pi^i_\theta(\cdot \mid
 \tau^i)$ conditioned on its local observation history. A \emph{shared
 centralised critic} $V_\phi(s)$ conditions on the global state and
@@ -742,7 +742,7 @@ pipeline:
     scores both positions and selects the better answer.
 \end{enumerate}
 The judge's score can be used as a reward signal to fine-tune both
-the proposer and critic via RL (Section~\ref{sec:rlvr} in
+the proposer and critic via RL (Section~\ref{sec:rlvr-ch15} in
 Chapter~\ref{ch:reasoning}). This enables \emph{scalable oversight}:
 the system can improve beyond the judge's direct capability,
 because it is easier for the judge to evaluate an argument than

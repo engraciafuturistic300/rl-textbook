@@ -60,14 +60,14 @@ expresses the gradient of the objective in terms of the action-value function:
 \end{equation}
 Chapter~\ref{ch:pg} also showed that any \emph{state-dependent} baseline
 $b(S_t)$ can be subtracted from $Q^{\pi_\theta}(S_t, A_t)$ without
-changing the expected gradient (Proposition~8.2 in Chapter~\ref{ch:pg}).
+changing the expected gradient (Theorem~\ref{thm:baseline} in Chapter~\ref{ch:pg}).
 The best possible baseline is the one that most reduces variance, and
 under mild conditions the optimal choice is precisely the state-value function
 $V^{\pi_\theta}(s)$.  The difference that remains after subtracting this
 baseline is so important that it deserves its own name.
 
 \begin{definition}[Advantage function]
-\label{def:advantage}
+\label{def:advantage-ch9}
 \index{advantage function}
 For a policy $\pi$ and the induced action-value and state-value functions
 $Q^\pi$ and $V^\pi$, the \textbf{advantage function} is
@@ -93,7 +93,7 @@ For any policy $\pi$ and any state $s \in \cS$,
 \end{proposition}
 
 \begin{proof}
-By Definition~\ref{def:advantage} and linearity of expectation,
+By Definition~\ref{def:advantage-ch9} and linearity of expectation,
 \[
 \E_{A \sim \pi(\cdot|s)}\bigl[A^\pi(s, A)\bigr]
 = \E_{A \sim \pi(\cdot|s)}\bigl[Q^\pi(s, A)\bigr] - V^\pi(s).
@@ -414,7 +414,7 @@ REINFORCE.\qed
 
 % -----------------------------------------------------------
 \section{Generalized Advantage Estimation}
-\label{sec:gae}
+\label{sec:gae-ch9}
 % -----------------------------------------------------------
 
 \subsection{Multi-Step Returns and the $n$-Step Advantage}
@@ -447,7 +447,7 @@ over all $n$-step estimates.
 \subsection{GAE Definition and Derivation}
 
 \begin{definition}[Generalized Advantage Estimation]
-\label{def:gae}
+\label{def:gae-ch9}
 \index{Generalized Advantage Estimation (GAE)}
 \index{GAE|see{Generalized Advantage Estimation}}
 For parameters $\gamma \in (0,1)$ and $\lambda \in [0,1]$, define the
@@ -891,7 +891,7 @@ for $r \in [1-\varepsilon, \infty)$.  Concretely,
 \min(f_1, f_2)
 = \begin{cases} rA & r < 1-\varepsilon, \\ rA & r \geq 1-\varepsilon. \end{cases}
 \]
-Wait\,---\,let us be more careful.  For $A < 0$ and $r < 1-\varepsilon$:
+We now proceed more carefully.  For $A < 0$ and $r < 1-\varepsilon$:
 $f_2(r) = (1-\varepsilon)A$ (constant, clipped from below), and
 $f_1(r) = rA > (1-\varepsilon)A$ since $r < 1-\varepsilon$ and $A<0$.
 So $f_1 > f_2$, thus $\min(f_1,f_2) = f_2 = (1-\varepsilon)A$, constant.
@@ -1415,7 +1415,7 @@ Let $T = 4$ (steps $t = 0,1,2,3$, terminal at $t=4$) with TD errors
 $\delta_0 = 0.4$, $\delta_1 = -0.2$, $\delta_2 = 0.6$, $\delta_3 = 0.1$.
 Take $\gamma = 1$ and $\lambda = 0.8$.
 \begin{enumerate}[label=(\alph*)]
-  \item Compute $\hat{A}_0^{\mathrm{GAE}}$ using Definition~\ref{def:gae}.
+  \item Compute $\hat{A}_0^{\mathrm{GAE}}$ using Definition~\ref{def:gae-ch9}.
   \item Verify that your answer matches the formula from
     Proposition~\ref{prop:gae-nstep} by computing the weighted mixture of
     $n$-step advantages $\hat{A}_0^{(n)}$ for $n = 1, 2, 3, 4$.

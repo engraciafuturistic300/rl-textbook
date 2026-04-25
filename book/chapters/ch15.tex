@@ -46,7 +46,7 @@ mathematics.
 This chapter is organised to build understanding progressively. We begin
 by making the RLVR objective precise and contrasting it with
 the RLHF objective of Part~III
-(Section~\ref{sec:rlvr}). We then examine chain-of-thought\index{chain-of-thought}
+(Section~\ref{sec:rlvr-ch15}). We then examine chain-of-thought\index{chain-of-thought}
 reasoning as both a prompting technique and a trainable
 behavior (Section~\ref{sec:cot}). Section~\ref{sec:training-reasoning}
 studies the training recipes used in practice, with DeepSeek R1 as a
@@ -62,14 +62,14 @@ Section~\ref{sec:reasoning-summary} closes with open questions.
 
 % ===========================================================
 \section{From RLHF to Reinforcement Learning with Verifiable Rewards}
-\label{sec:rlvr}
+\label{sec:rlvr-ch15}
 % ===========================================================
 
 \subsection{The Verification Insight}
 
 Recall from Chapter~\ref{ch:practical-rlhf} that RLHF maximises
 \begin{equation}
-\label{eq:rlhf-objective}
+\label{eq:rlhf-objective-ch15}
 J_{\mathrm{RLHF}}(\theta)
   = \E_{\pi_\theta}\bigl[r_\phi(x, y)\bigr]
   - \beta\,\KL{\pi_\theta}{\pi_{\mathrm{ref}}},
@@ -92,7 +92,7 @@ inconsistencies of those annotations.
 both problems by replacing the learned reward model with a deterministic
 \textbf{verification function}\index{verification function}:
 \begin{equation}
-\label{eq:rlvr-reward}
+\label{eq:rlvr-reward-ch15}
 r(x, y) = \begin{cases}
   1 & \text{if } \textsc{Verify}(x, y) = \textsc{True}, \\
   0 & \text{otherwise.}
@@ -107,7 +107,7 @@ solution; for code it executes the response against a test suite and
 returns \textsc{True} if all assertions pass.
 
 \begin{definition}[RLVR objective]
-\label{def:rlvr}
+\label{def:rlvr-ch15}
 \index{RLVR!objective}
 Let $\mathcal{D}$ be a dataset of (prompt, ground-truth answer) pairs
 $(x, a^*)$. The RLVR objective is
@@ -427,7 +427,7 @@ Reasoning, INTELLECT-2, Skywork OR-1, and others.
 \subsection{Removing the KL Penalty}
 \label{subsec:no-kl}
 
-Standard RLHF uses the KL penalty of~\eqref{eq:rlhf-objective} to
+Standard RLHF uses the KL penalty of~\eqref{eq:rlhf-objective-ch15} to
 prevent the policy from collapsing onto reward-hacking outputs. In
 RLVR, the binary reward cannot be hacked by parroting a fixed output,
 because the verification function is deterministic and problem-specific.
@@ -477,7 +477,7 @@ small auxiliary rewards:
 \subsection{Loss Normalisation and the GRPO Bias}
 \label{subsec:loss-norm}
 
-The GRPO algorithm (Chapter~\ref{ch:pg}) computes advantages by
+The GRPO algorithm (Chapter~\ref{ch:grpo}) computes advantages by
 normalising rewards within each group of rollouts for the same
 prompt. A subtle consequence is that the contribution of a problem
 to the total loss is independent of the number of rollouts generated
@@ -738,7 +738,7 @@ Tool use is typically trained in two stages:
 The reward signal for tool-use RL is typically outcome-based: the
 model receives reward~$1$ if the final answer (after all tool calls)
 is correct, and~$0$ otherwise. This is precisely the RLVR framework
-of Section~\ref{sec:rlvr}, now extended to multi-step trajectories.
+of Section~\ref{sec:rlvr-ch15}, now extended to multi-step trajectories.
 The environment is the tool ecosystem itself.
 
 \subsection{SWiRL: Step-Wise RL for Tool Use}
@@ -882,7 +882,7 @@ Agentic RL has been applied to a growing range of tasks:
 
 \item[Code execution] The agent writes code, executes it in a
   sandboxed Python interpreter, reads the output, and iterates. The
-  unit-test reward signal from Section~\ref{sec:rlvr} applies
+  unit-test reward signal from Section~\ref{sec:rlvr-ch15} applies
   directly.
 
 \item[API interaction] The agent calls REST APIs, reads responses,
@@ -1000,7 +1000,7 @@ the value network by computing per-prompt advantage estimates from
 the empirical mean and variance of rewards within a group of $k$
 rollouts:
 \begin{equation}
-\label{eq:grpo-advantage}
+\label{eq:grpo-advantage-ch15}
 \hat{A}_i = \frac{r_i - \bar{r}}{\sigma_r}, \qquad
 \bar{r} = \frac{1}{k}\sum_{j=1}^k r_j, \quad
 \sigma_r = \sqrt{\frac{1}{k}\sum_{j=1}^k (r_j - \bar{r})^2}.
@@ -1179,9 +1179,9 @@ or Chernoff bounds.
 \end{exercise}
 
 \begin{exercise}
-\label{ex:grpo-advantage}
+\label{ex:grpo-advantage-ch15}
 Suppose $k = 4$ rollouts for a prompt receive rewards $r = (1, 1, 0, 0)$.
-Compute the GRPO advantage estimates $\hat{A}_i$ from~\eqref{eq:grpo-advantage}.
+Compute the GRPO advantage estimates $\hat{A}_i$ from~\eqref{eq:grpo-advantage-ch15}.
 Now suppose instead $r = (1, 0, 0, 0)$. Compute $\hat{A}_i$ again.
 Compare the magnitude of the gradient signal in the two cases and
 explain why the second scenario gives stronger feedback to the correct
