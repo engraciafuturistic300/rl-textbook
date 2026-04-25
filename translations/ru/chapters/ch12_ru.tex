@@ -224,53 +224,63 @@ DPO требует набора данных предпочтений вида $
 
 \begin{figure}[ht]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
   every node/.style={font=\small},
-  box/.style={draw, rounded corners=3pt, minimum width=2.0cm, minimum height=0.75cm,
-              align=center, text width=1.9cm},
-  eliminated/.style={draw, rounded corners=3pt, minimum width=2.0cm, minimum height=0.75cm,
-              align=center, text width=1.9cm, fill=red!10, draw=red!50, text=red!70},
-  active/.style={draw, rounded corners=3pt, minimum width=2.0cm, minimum height=0.75cm,
-              align=center, text width=1.9cm, fill=blue!8},
+  box/.style={draw, rounded corners=3pt, minimum width=2.4cm, minimum height=1.3cm,
+              align=center, text width=2.3cm, inner sep=2pt},
+  eliminated/.style={draw, rounded corners=3pt, minimum width=2.4cm, minimum height=1.3cm,
+              align=center, text width=2.3cm, inner sep=2pt,
+              fill=red!10, draw=red!50, text=red!70},
+  active/.style={draw, rounded corners=3pt, minimum width=2.4cm, minimum height=1.3cm,
+              align=center, text width=2.3cm, inner sep=2pt, fill=blue!8},
   arrow/.style={->, >=Stealth, thick},
-  label/.style={font=\small\bfseries}
+  rowlabel/.style={font=\small\bfseries}
 ]
-%% ---- Строка PPO (y=1.8) ----
-\node[label] at (-1.6, 1.8) {PPO:};
-\node[active] (ppo-ref)  at (0.8, 1.8)  {Референсная\\стратегия $\pi_\mathrm{ref}$};
-\node[active] (ppo-sft)  at (3.2, 1.8)  {Роллаут:\\$y \sim \pi_\theta$};
-\node[active] (ppo-rm)   at (5.6, 1.8)  {Модель\\вознаграждения $r_\psi$};
-\node[active] (ppo-vf)   at (8.0, 1.8)  {Функция\\ценности $V_\phi$};
-\node[active] (ppo-ppo)  at (10.4,1.8)  {Обновление\\PPO};
+\def\dx{3.2}     % шаг между блоками
+\def\xlab{-0.4}  % позиция метки PPO:/DPO: (меньше левое поле)
+\def\xstart{2.0} % центр первого блока (больше зазор от метки)
+\def\yP{2.6}
+\def\yD{-0.6}
 
-\draw[arrow] (ppo-ref)  -- node[above,font=\tiny]{KL} (ppo-sft);
-\draw[arrow] (ppo-sft)  -- node[above,font=\tiny]{$r(x,y)$} (ppo-rm);
-\draw[arrow] (ppo-rm)   -- node[above,font=\tiny]{преим.} (ppo-vf);
-\draw[arrow] (ppo-vf)   -- (ppo-ppo);
+%% ---- Строка PPO ----
+\node[rowlabel, anchor=east] at (\xlab,\yP) {PPO:};
+\node[active] (ppo-ref) at (\xstart+0*\dx,\yP) {Референсная стратегия $\pi_\mathrm{ref}$};
+\node[active] (ppo-sft) at (\xstart+1*\dx,\yP) {Роллаут: $y \sim \pi_\theta$};
+\node[active] (ppo-rm)  at (\xstart+2*\dx,\yP) {Модель вознаграждения $r_\psi$};
+\node[active] (ppo-vf)  at (\xstart+3*\dx,\yP) {Функция ценности $V_\phi$};
+\node[active] (ppo-ppo) at (\xstart+4*\dx,\yP) {Обновление PPO};
 
-%% ---- Строка DPO (y=-0.4) ----
-\node[label] at (-1.6,-0.4) {DPO:};
-\node[active]     (dpo-ref) at (0.8, -0.4)  {Референсная\\стратегия $\pi_\mathrm{ref}$};
-\node[active]     (dpo-pol) at (3.2, -0.4)  {Стратегия\\$\pi_\theta$};
-\node[eliminated] (dpo-rm)  at (5.6, -0.4)  {Модель\\вознаграждения \xmark};
-\node[eliminated] (dpo-vf)  at (8.0, -0.4)  {Функция\\ценности \xmark};
-\node[active]     (dpo-loss)at (10.4,-0.4)  {Потеря\\DPO};
+\draw[arrow] (ppo-ref) -- node[above,font=\scriptsize]{KL}       (ppo-sft);
+\draw[arrow] (ppo-sft) -- node[above,font=\scriptsize]{$r(x,y)$} (ppo-rm);
+\draw[arrow] (ppo-rm)  -- node[above,font=\scriptsize]{преим.}   (ppo-vf);
+\draw[arrow] (ppo-vf)  -- (ppo-ppo);
 
-\draw[arrow] (dpo-ref) -- node[above,font=\tiny]{$\log\pi_\mathrm{ref}$} (dpo-pol);
-\draw[arrow] (dpo-pol) -- node[above,font=\tiny]{$\log\pi_\theta$} (dpo-rm);
+%% ---- Строка DPO ----
+\node[rowlabel, anchor=east] at (\xlab,\yD) {DPO:};
+\node[active]     (dpo-ref)  at (\xstart+0*\dx,\yD) {Референсная стратегия $\pi_\mathrm{ref}$};
+\node[active]     (dpo-pol)  at (\xstart+1*\dx,\yD) {Стратегия $\pi_\theta$};
+\node[eliminated] (dpo-rm)   at (\xstart+2*\dx,\yD) {Модель вознаграждения \xmark};
+\node[eliminated] (dpo-vf)   at (\xstart+3*\dx,\yD) {Функция ценности \xmark};
+\node[active]     (dpo-loss) at (\xstart+4*\dx,\yD) {Потеря DPO};
+
+\draw[arrow] (dpo-ref) -- node[above,font=\scriptsize]{$\log\pi_\mathrm{ref}$} (dpo-pol);
+\draw[arrow] (dpo-pol) -- node[above,font=\scriptsize]{$\log\pi_\theta$}       (dpo-rm);
 \draw[arrow,draw=red!40,dashed] (dpo-rm) -- (dpo-vf);
 \draw[arrow,draw=red!40,dashed] (dpo-vf) -- (dpo-loss);
 
-% Прямая стрелка, минующая исключённые компоненты
-\draw[arrow, bend right=28, color=blue!70] (dpo-pol.south) to
-  node[below,font=\tiny,color=blue!70]{напрямую (без RM)} (dpo-loss.south);
+% Скобка «исключено в DPO»
+\draw[decorate, decoration={brace, amplitude=5pt, mirror}, color=red!60]
+  ([yshift=-6pt]dpo-rm.south west) -- ([yshift=-6pt]dpo-vf.south east)
+  node[midway, below=7pt, font=\scriptsize, color=red!60]{исключено в DPO};
 
-% Аннотация скобки
-\draw[decorate, decoration={brace,amplitude=5pt}, color=red!60]
-  (5.0, -1.05) -- (8.7, -1.05)
-  node[midway, below=5pt, font=\tiny, color=red!60, align=center]{исключено в DPO};
+% Прямая стрелка в обход исключённых компонентов
+\draw[arrow, color=blue!70]
+  (dpo-pol.south) .. controls +(0,-3.2) and +(0,-3.2) .. (dpo-loss.south)
+  node[pos=0.5, below=2pt, font=\scriptsize, color=blue!70]{напрямую (без RM)};
 
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{Конвейеры обучения PPO (сверху) и DPO (снизу). Конвейер PPO требует четырёх компонентов: референсной стратегии (для KL), онлайн-роллаутов, модели вознаграждения $r_\psi$ и критика с функцией ценности $V_\phi$. DPO устраняет модель вознаграждения и функцию ценности, вычисляя сигнал выравнивания напрямую из логарифмических отношений вероятностей.}
 \label{fig:dpo-vs-ppo}
 \end{figure}

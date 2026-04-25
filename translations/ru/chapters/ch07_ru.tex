@@ -329,30 +329,42 @@ V_\mathbf{w}(s) = \mathbf{w}^\top \varphi(s) = \sum_{i=1}^d w_i \varphi_i(s),
 \centering
 \begin{tikzpicture}[
   every node/.style={font=\small},
-  tri/.style={draw, fill=gray!15, regular polygon, regular polygon sides=3,
-              minimum size=5.5cm, inner sep=0pt},
-  label/.style={font=\small\bfseries, align=center}
+  vlabel/.style={font=\small\bfseries, align=center},
+  elabel/.style={font=\footnotesize, inner sep=2pt}
 ]
-  % Треугольник смертельной триады
-  \node[tri] (T) {};
-  % Вершины
-  \coordinate (A) at (T.corner 1);  % сверху
-  \coordinate (B) at (T.corner 2);  % снизу слева
-  \coordinate (C) at (T.corner 3);  % снизу справа
+  % Вершины треугольника (равносторонний, сторона ~6 см)
+  \coordinate (A) at (90:3.4);     % верх
+  \coordinate (B) at (210:3.4);    % низ-слева
+  \coordinate (C) at (330:3.4);    % низ-справа
 
-  \node[label, above=0.45cm of A, align=center] {Аппроксимация\\функций};
-  \node[label, below=0.25cm of B, align=right] {Бутстрэппинг};
-  \node[label, below=0.25cm of C, align=left] {Обучение на другой\\стратегии};
+  % Сам треугольник
+  \draw[fill=gray!15] (A) -- (B) -- (C) -- cycle;
 
-  \node[font=\itshape\small, align=center] at ($(A)!0.5!(B)!0.33!(C)$)
+  % Подписи вершин (снаружи)
+  \node[vlabel, above=0.35cm of A]        {Аппроксимация\\функций};
+  \node[vlabel, below left=0.15cm of B]   {Бутстрэппинг};
+  \node[vlabel, below right=0.15cm of C]  {Обучение на другой\\стратегии};
+
+  % Центр — настоящий барицентр
+  \node[font=\itshape\small, align=center]
+    at (barycentric cs:A=1,B=1,C=1)
     {Потенциальная\\расходимость};
 
-  % Аннотации безопасных зон на рёбрах (сдвинуты внутрь треугольника)
-  \node[font=\tiny, sloped, above, inner sep=1pt] at ($(A)!0.5!(B)$) {МК (без бутстрэппинга)};
-  \node[font=\tiny, above, inner sep=2pt] at ($(B)!0.5!(C)+(0,0.1)$) {Таблица (без аппрокс.)};
-  \node[font=\tiny, sloped, above, inner sep=1pt] at ($(A)!0.5!(C)$) {TD на текущей стратегии};
+  % Подписи рёбер — СНАРУЖИ треугольника, вдоль граней
+  % Левое ребро A--B: текст слева от линии => sloped, above с порядком B--A
+  \path (B) -- node[elabel, sloped, above] {МК (без бутстрэппинга)} (A);
+
+  % Правое ребро A--C: текст справа от линии => sloped, above с порядком A--C
+  \path (A) -- node[elabel, sloped, above] {TD на текущей стратегии} (C);
+
+  % Нижнее ребро B--C: просто под основанием
+  \path (B) -- node[elabel, below=2pt] {Таблица (без аппрокс.)} (C);
 \end{tikzpicture}
-\caption{Смертельная триада.  Каждое ребро треугольника «безопасно»: два из трёх ингредиентов вместе управляемы.  Только когда все три вершины активны одновременно, нестабильность становится неизбежной в общем случае.  Подписи рёбер указывают, какой элемент отсутствует вдоль каждой стороны.}
+\caption{Смертельная триада. Каждое ребро треугольника «безопасно»: два
+из трёх ингредиентов вместе управляемы. Только когда все три вершины
+активны одновременно, нестабильность становится неизбежной в общем
+случае. Подписи рёбер указывают, какой элемент отсутствует вдоль каждой
+стороны.}
 \label{fig:deadly-triad}
 \end{figure}
 
